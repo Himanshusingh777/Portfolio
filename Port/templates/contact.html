@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Himanshu Singh</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #020617);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #cbd5f5;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #60a5fa;
+        }
+
+        .contact-section {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .contact-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-section p {
+            color: #cbd5f5;
+            margin-bottom: 40px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .info-text {
+            text-align: left;
+        }
+
+        .info-text h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .info-text p,
+        .info-text a {
+            font-size: 0.95rem;
+            color: #cbd5f5;
+            text-decoration: none;
+        }
+
+        .info-text a:hover {
+            color: #60a5fa;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .info-text {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="contact-section">
+    <h1>Contact</h1>
+    <p>For professional inquiries and collaboration opportunities</p>
+
+    <div class="contact-card">
+
+        <div class="info-item">
+            <div class="icon">📧</div>
+            <div class="info-text">
+                <h3>Email</h3>
+                <p>
+                    <a href="mailto:himanshu.singh@example.com">
+                        singhhimanshu@gmail.com
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="info-item">
+            <div class="icon">📱</div>
+            <div class="info-text">
+                <h3>Phone</h3>
+                <p>
+                    <a href="tel:+91-6200036129">
+                        +91 6200036129
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="info-item">
+            <div class="icon">💼</div>
+            <div class="info-text">
+                <h3>LinkedIn</h3>
+                <p>
+                    <a href="https://www.linkedin.com/in/himanshu-singh-264291297/" target="_blank">
+                        linkedin.com/in/himanshusingh
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="info-item">
+            <div class="icon">📍</div>
+            <div class="info-text">
+                <h3>Location</h3>
+                <p>Hyderabad, Telangana, India</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+</body>
+</html>

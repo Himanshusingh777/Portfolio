@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Himanshu Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #333;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul li a:hover {
+            color: #3b82f6;
+        }
+
+        .about-section {
+            padding: 120px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: #f8fafc;
+            margin-bottom: 50px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 70px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .profile-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            border: 3px solid #3b82f6;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 1.6em;
+            color: #f8fafc;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .profile-role {
+            color: #60a5fa;
+            font-size: 1em;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat-item {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: 700;
+            display: block;
+            color: #60a5fa;
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+
+        .bio-content {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .bio-content h2 {
+            color: #f8fafc;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .bio-content p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            font-size: 1em;
+        }
+
+        .highlight-box {
+            background: rgba(246, 247, 250, 0.64);
+            border-left: 4px solid #e90d0d;
+            padding: 18px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box strong {
+            color: #080b0e;
+        }
+
+        .skills-section {
+            margin-bottom: 70px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+
+        .skill-card h3 {
+            color: #f8fafc;
+            margin-bottom: 18px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .skill-icon {
+            width: 38px;
+            height: 38px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #94a3b8;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border-color: #3b82f6;
+            transform: scale(1.05);
+        }
+
+        .experience-section {
+            animation: fadeInUp 0.8s ease 0.6s both;
+            margin-bottom: 70px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #3b82f6 0%, #8b5cf6 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 25px;
+            width: 16px;
+            height: 16px;
+            background: #3b82f6;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.2);
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .timeline-content h3 {
+            color: #f8fafc;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .company {
+            color: #60a5fa;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .timeline-content ul li {
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .timeline-content ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .timeline-date {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #e2e8f0;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .timeline-date small {
+            color: #94a3b8;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+
+        .achievements {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin-top: 50px;
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+
+        .achievements h2 {
+            color: #f8fafc;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+        }
+
+        .achievement-item {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 3px solid #3b82f6;
+            transition: all 0.3s;
+        }
+
+        .achievement-item:hover {
+            transform: translateX(8px);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .achievement-item h4 {
+            color: #60a5fa;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .achievement-item p {
+            color: #cbd5e1;
+            font-size: 0.85em;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(15, 23, 42, 0.95);
+            color: #94a3b8;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9em;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .profile-container {
+                grid-template-columns: 1fr 1.5fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 20px;
+                padding: 0 10px;
+            }
+
+            nav ul li a {
+                font-size: 0.9em;
+            }
+
+            .about-section {
+                padding: 100px 15px 40px;
+            }
+
+            .section-title {
+                font-size: 2em;
+                margin-bottom: 40px;
+            }
+
+            .profile-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .profile-card {
+                position: static;
+                padding: 30px;
+            }
+
+            .profile-img {
+                width: 130px;
+                height: 130px;
+            }
+
+            .profile-name {
+                font-size: 1.4em;
+            }
+
+            .profile-stats {
+                gap: 12px;
+            }
+
+            .stat-item {
+                padding: 12px;
+            }
+
+            .stat-number {
+                font-size: 1.6em;
+            }
+
+            .bio-content {
+                padding: 25px;
+            }
+
+            .bio-content h2 {
+                font-size: 1.5em;
+            }
+
+            .bio-content p {
+                font-size: 0.95em;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                padding-left: 50px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-date {
+                grid-column: 1;
+                text-align: left;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .timeline-content {
+                padding: 20px;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.2em;
+            }
+
+            .achievement-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 15px 0;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.85em;
+            }
+
+            .section-title {
+                font-size: 1.7em;
+            }
+
+            .profile-card {
+                padding: 25px;
+            }
+
+            .profile-img {
+                width: 110px;
+                height: 110px;
+            }
+
+            .profile-name {
+                font-size: 1.3em;
+            }
+
+            .profile-role {
+                font-size: 0.9em;
+            }
+
+            .stat-number {
+                font-size: 1.5em;
+            }
+
+            .stat-label {
+                font-size: 0.8em;
+            }
+
+            .bio-content {
+                padding: 20px;
+            }
+
+            .bio-content h2 {
+                font-size: 1.3em;
+            }
+
+            .skill-card {
+                padding: 20px;
+            }
+
+            .skill-card h3 {
+                font-size: 1.15em;
+            }
+
+            .timeline-content {
+                padding: 18px;
+            }
+
+            .achievements {
+                padding: 25px;
+            }
+
+            .achievements h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="about-section">
+        <h1 class="section-title">About Me</h1>
+
+        <div class="profile-container">
+            <div class="profile-card">
+                <div class="profile-img">
+                    <!-- Replace with: <img src="{{ url_for('static', filename='image/imggg.jpeg') }}" alt="Himanshu Singh"> -->
+                    <img src="/static/image/imggg.jpeg" alt="Himanshu Singh">
+                </div>
+                <h2 class="profile-name">Himanshu Singh</h2>
+                <p class="profile-role">Research Analyst & Data Enthusiast</p>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">6+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3+</span>
+                        <span class="stat-label">Months Exp</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Skills</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Certifications</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bio-content">
+                <h2>Hello! I'm Himanshu</h2>
+                <p>I'm a passionate Research Analyst and Data Enthusiast based in Hyderabad, India. I specialize in transforming complex data into actionable insights and building intelligent AI solutions that solve real-world problems.</p>
+                
+                <p>My journey in data analytics began during my college years, where I discovered my love for uncovering patterns and stories hidden within data. Since then, I've been on an exciting path of continuous learning and innovation.</p>
+
+                <div class="highlight-box">
+                    <strong>🎯 What I Do:</strong> I combine analytical thinking with technical expertise to deliver data-driven solutions. From building predictive models to creating interactive dashboards, I help organizations make informed decisions through the power of data.
+                </div>
+
+                <p>When I'm not analyzing data or coding, you'll find me exploring the latest AI technologies, participating in hackathons, or sharing my knowledge through tech communities.</p>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3><span class="skill-icon">💻</span> Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3><span class="skill-icon">📊</span> Data Analysis</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Statistics</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3><span class="skill-icon">📈</span> Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Google Sheets</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">Plotly</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3><span class="skill-icon">🤖</span> AI/ML</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">NLP</span>
+                        <span class="skill-tag">OpenAI API</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3><span class="skill-icon">🌐</span> Web Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Bootstrap</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3><span class="skill-icon">🛠️</span> Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Jupyter</span>
+                        <span class="skill-tag">VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-section">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <span>2026 - Present</span>
+                        <small>Hyderabad, India</small>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Research Analyst</h3>
+                        <p class="company">Frugal Testing</p>
+                        <ul>
+                            <li>Conducting market research and competitive analysis for strategic decision-making</li>
+                            <li>Building predictive models for business forecasting with 90%+ accuracy</li>
+                            <li>Creating interactive dashboards using Power BI and Looker Studio</li>
+                            <li>Automating data processing workflows, reducing manual effort by 60%</li>
+                            <li>Presenting insights to C-level stakeholders</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Machine Learning Intern</h3>
+                        <p class="company">SAIL Pvt Ltd</p>
+                        <ul>
+                            <li>Analyzed customer data to identify trends and patterns</li>
+                            <li>Developed Python scripts for data cleaning and transformation</li>
+                            <li>Created visualization reports using Matplotlib and Seaborn</li>
+                            <li>Collaborated with cross-functional teams on data-driven projects</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-date">
+                        <span>2024 - 2024</span>
+                        <small>Hybrid</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="achievements">
+            <h2>Achievements & Certifications</h2>
+            <div class="achievement-grid">
+                <div class="achievement-item">
+                    <h4>🏆 Hackathon Winner</h4>
+                    <p>AI Hackathon 2025 - AthleteEdge AI</p>
+                </div>
+                <div class="achievement-item">
+                    <h4>🎓 Startup Fair</h4>
+                    <p>Organized by GIETU in Their TechFest</p>
+                </div>
+                <div class="achievement-item">
+                    <h4>📜 Python Certification</h4>
+                    <p>HackerRank</p>
+                </div>
+                <div class="achievement-item">
+                    <h4>📚 HCI - NPTEL IIIT Delhi</h4>
+                    <p>79% with Silver Badge</p>
+                </div>
+                <div class="achievement-item">
+                    <h4>🤖 AI/ML Certificate</h4>
+                    <p>Machine Learning Specialization</p>
+                </div>
+                <div class="achievement-item">
+                    <h4>🏆 Hacknovation 1.0 Winner</h4>
+                    <p>Best Healthcare AI Solution</p>
+                </div>
+                <div class="achievement-item">
+                    <h4>🚀 MSME Hackathon 5.0</h4>
+                    <p>Cobot Threat Detection Toolkit</p>
+                </div>
+                <div class="achievement-item">
+                    <h4>🏆 Tug Of War Champion</h4>
+                    <p>Won 7 Matches in a Row as Captain</p>
+                </div>
+                <div class="achievement-item">
+                    <h4>🥈 SIH Hackathon 2024</h4>
+                    <p>Runner-Up in Agri Domain</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+</html>

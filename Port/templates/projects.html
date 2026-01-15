@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Himanshu Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000ff;
+            color: #030303ff;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul li a:hover {
+            color: #3b82f6;
+        }
+
+        .projects-section {
+            padding: 120px 20px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #f8fafc;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1em;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stats-banner {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-box {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #cbd5e1;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .filter-btn {
+            background: rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(10px);
+            color: #94a3b8;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 10px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.95em;
+            letter-spacing: 0.3px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+        }
+
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 12px;
+            width: fit-content;
+            letter-spacing: 0.5px;
+        }
+
+        .project-title {
+            color: #f8fafc;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .project-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            font-size: 0.95em;
+        }
+
+        .highlights {
+            background: rgba(59, 130, 246, 0.05);
+            border-left: 3px solid #3b82f6;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .highlights h4 {
+            color: #60a5fa;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlights li {
+            color: #cbd5e1;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .highlights li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #94a3b8;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .project-btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-demo {
+            background: #3b82f6;
+            color: #fff;
+            border: 2px solid #3b82f6;
+        }
+
+        .btn-demo:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-code {
+            background: transparent;
+            color: #94a3b8;
+            border: 2px solid #475569;
+        }
+
+        .btn-code:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+            color: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(15, 23, 42, 0.95);
+            color: #94a3b8;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9em;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 20px;
+                padding: 0 10px;
+            }
+
+            nav ul li a {
+                font-size: 0.9em;
+            }
+
+            .projects-section {
+                padding: 100px 15px 40px;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .section-subtitle {
+                font-size: 1em;
+            }
+
+            .stats-banner {
+                padding: 30px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 2.5em;
+            }
+
+            .stat-label {
+                font-size: 0.9em;
+            }
+
+            .filter-buttons {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 8px 18px;
+                font-size: 0.85em;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-image {
+                height: 180px;
+                font-size: 3em;
+            }
+
+            .project-content {
+                padding: 20px;
+            }
+
+            .project-title {
+                font-size: 1.3em;
+            }
+
+            .project-description {
+                font-size: 0.9em;
+            }
+
+            .project-btn {
+                padding: 9px 14px;
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 15px 0;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.85em;
+            }
+
+            .section-title {
+                font-size: 1.7em;
+            }
+
+            .stats-banner {
+                padding: 25px 15px;
+            }
+
+            .stats-grid {
+                gap: 15px;
+            }
+
+            .stat-number {
+                font-size: 2em;
+            }
+
+            .stat-label {
+                font-size: 0.85em;
+            }
+
+            .filter-btn {
+                padding: 7px 15px;
+                font-size: 0.8em;
+            }
+
+            .project-image {
+                height: 160px;
+                font-size: 2.5em;
+            }
+
+            .project-content {
+                padding: 18px;
+            }
+
+            .project-title {
+                font-size: 1.2em;
+            }
+
+            .highlights {
+                padding: 10px;
+            }
+
+            .tech-stack {
+                gap: 6px;
+            }
+
+            .tech-tag {
+                padding: 4px 8px;
+                font-size: 0.75em;
+            }
+
+            .project-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .project-btn {
+                padding: 10px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="projects-section">
+        <div class="section-header">
+            <h1 class="section-title">My Projects</h1>
+            <p class="section-subtitle">Showcasing work in Data Analytics, AI/ML, and Application Development</p>
+        </div>
+
+        <div class="stats-banner">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">6+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Technologies Used</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Hackathon Wins</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="ai">AI/ML</button>
+            <button class="filter-btn" data-filter="analytics">Analytics</button>
+            <button class="filter-btn" data-filter="development">Development</button>
+        </div>
+
+        <div class="projects-grid">
+            <!-- SwasthaAI Project -->
+            <div class="project-card" data-category="ai">
+                <div class="project-image">🏥</div>
+                <div class="project-content">
+                    <span class="project-category">AI/ML</span>
+                    <h3 class="project-title">SwasthaAI-Agent</h3>
+                    <p class="project-description">An AI-driven healthcare assistant that performs symptom checking, provides medical suggestions, and verifies medicines using OCR technology.</p>
+                    
+                    <div class="highlights">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Real-time symptom analysis</li>
+                            <li>Medicine verification using OCR</li>
+                            <li>Intelligent health recommendations</li>
+                            <li>User-friendly interface</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">OCR</span>
+                        <span class="tech-tag">TensorFlow</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" class="project-btn btn-demo">Live Demo</a>
+                        <a href="#" class="project-btn btn-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Exam Repository -->
+            <div class="project-card" data-category="development">
+                <div class="project-image">📚</div>
+                <div class="project-content">
+                    <span class="project-category">Development</span>
+                    <h3 class="project-title">Student Exam Repository</h3>
+                    <p class="project-description">A centralized platform where university students can access previous years' semester question papers and study materials with organized course-wise access and clean navigation.</p>
+                    
+                    <div class="highlights">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Organized course-wise access</li>
+                            <li>Previous year papers archive</li>
+                            <li>Easy navigation system</li>
+                            <li>User-friendly interface</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">SQLite</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://www-giet.onrender.com" target="_blank" class="project-btn btn-demo">View Demo</a>
+                        <a href="#" class="project-btn btn-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Electric Meter Reading -->
+            <div class="project-card" data-category="analytics">
+                <div class="project-image">⚡</div>
+                <div class="project-content">
+                    <span class="project-category">Machine Learning</span>
+                    <h3 class="project-title">Electric Meter Reading</h3>
+                    <p class="project-description">Real-time electricity meter reading and monitoring system that provides insights into energy consumption, usage patterns, and alerts for unusual activity.</p>
+                    
+                    <div class="highlights">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Real-time data visualization</li>
+                            <li>Consumption pattern analysis</li>
+                            <li>Anomaly detection alerts</li>
+                            <li>Energy usage forecasting</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Pandas</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" class="project-btn btn-demo">View Demo</a>
+                        <a href="#" class="project-btn btn-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Athlete Edge AI -->
+            <div class="project-card" data-category="ai">
+                <div class="project-image">🤖</div>
+                <div class="project-content">
+                    <span class="project-category">AI / Sports Analytics</span>
+                    <h3 class="project-title">Athlete Edge AI</h3>
+                    <p class="project-description">AI-powered sports analytics platform that predicts match outcomes, identifies opponent weaknesses, and provides actionable performance insights.</p>
+                    
+                    <div class="highlights">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Match outcome forecasting</li>
+                            <li>Opponent weakness detection</li>
+                            <li>Real-time performance analytics</li>
+                            <li>Strategy recommendations</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" class="project-btn btn-demo">View Demo</a>
+                        <a href="#" class="project-btn btn-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smart Agritech -->
+            <div class="project-card" data-category="ai">
+                <div class="project-image">🌱</div>
+                <div class="project-content">
+                    <span class="project-category">AI / Agritech</span>
+                    <h3 class="project-title">Smart Agritech</h3>
+                    <p class="project-description">AI-powered system that monitors food quality and crop health using real-time data, helping farmers make informed decisions and reduce wastage.</p>
+                    
+                    <div class="highlights">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Real-time crop monitoring</li>
+                            <li>AI-based anomaly detection</li>
+                            <li>Data-driven decision support</li>
+                            <li>Reduce wastage and improve yield</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Machine Learning</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" class="project-btn btn-demo">View Demo</a>
+                        <a href="#" class="project-btn btn-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                projectCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'flex';
+                    } else {
+                        const category = card.dataset.category;
+                        card.style.display = category === filter ? 'flex' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

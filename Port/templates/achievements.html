@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements | Himanshu Singh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul li a:hover {
+            color: #3b82f6;
+        }
+
+        .achievements-section {
+            padding: 120px 20px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #f8fafc;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1em;
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #cbd5e1;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .filter-btn {
+            background: rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(10px);
+            color: #94a3b8;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 10px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.95em;
+            letter-spacing: 0.3px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .achievement-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+
+        .achievement-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+        }
+
+        .achievement-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .achievement-icon {
+            font-size: 2.5em;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .achievement-info {
+            flex: 1;
+        }
+
+        .achievement-category {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .achievement-title {
+            color: #f8fafc;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .achievement-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        .achievement-date {
+            color: #94a3b8;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .achievement-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .achievement-badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(15, 23, 42, 0.95);
+            color: #94a3b8;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9em;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 20px;
+                padding: 0 10px;
+            }
+
+            nav ul li a {
+                font-size: 0.9em;
+            }
+
+            .achievements-section {
+                padding: 100px 15px 40px;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .section-subtitle {
+                font-size: 1em;
+            }
+
+            .stats-overview {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .stat-icon {
+                font-size: 2em;
+            }
+
+            .stat-number {
+                font-size: 2em;
+            }
+
+            .stat-label {
+                font-size: 0.9em;
+            }
+
+            .filter-btn {
+                padding: 8px 18px;
+                font-size: 0.85em;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .achievement-card {
+                padding: 25px;
+            }
+
+            .achievement-icon {
+                font-size: 2em;
+                width: 50px;
+                height: 50px;
+            }
+
+            .achievement-title {
+                font-size: 1.15em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 15px 0;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.85em;
+            }
+
+            .section-title {
+                font-size: 1.7em;
+            }
+
+            .stats-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 18px;
+            }
+
+            .filter-btn {
+                padding: 7px 15px;
+                font-size: 0.8em;
+            }
+
+            .achievement-card {
+                padding: 20px;
+            }
+
+            .achievement-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .achievement-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.8em;
+            }
+
+            .achievement-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+   
+/* Gallery grid */
+.horizontal-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* default 5 per row */
+    gap: 24px;
+}
+
+/* Top 3 featured images */
+.gallery-card.featured {
+    grid-column: span 1;   /* stays 3 in first row */
+    height: 460px;        /* increased height */
+    width: 320px;          /* full grid width */
+}
+
+/* Normal images (5 in a row) */
+.gallery-card {
+    height: 360px;        /* increased height */
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Image fit */
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hover effect */
+.gallery-card:hover {
+    transform: scale(1.06);
+    box-shadow: 0 22px 48px rgba(0,0,0,0.32);
+}
+
+/* Force first row to only 3 items */
+.horizontal-gallery .gallery-card.featured:nth-child(1),
+.horizontal-gallery .gallery-card.featured:nth-child(2),
+.horizontal-gallery .gallery-card.featured:nth-child(3) {
+    grid-column: span 1;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+    .horizontal-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .horizontal-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .horizontal-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-card,
+    .gallery-card.featured {
+        height: 220px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/achievements">Achievements</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="achievements-section">
+        <div class="section-header">
+            <h1 class="section-title">Achievements & Certifications</h1>
+            <p class="section-subtitle">A showcase of my accomplishments, competition wins, and professional certifications in technology and innovation</p>
+        </div>
+
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Hackathon Wins</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📜</div>
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Certifications</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-number">3+</div>
+                <div class="stat-label">Competitions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-number">9+</div>
+                <div class="stat-label">Total Achievements</div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="hackathon">Hackathons</button>
+            <button class="filter-btn" data-filter="certification">Certifications</button>
+            <button class="filter-btn" data-filter="competition">Competitions</button>
+            <button class="filter-btn" data-filter="gallery">Gallery</button>
+
+        </div>
+        
+
+        <div class="achievements-grid">
+            <!-- Hackathon Winner - AthleteEdge AI -->
+            <div class="achievement-card" data-category="hackathon">
+                <div class="achievement-header">
+                    <div class="achievement-icon">🏆</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">HACKATHON</span>
+                        <h3 class="achievement-title">AI Hackathon Winner</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Won first place at AI Hackathon 2025 with AthleteEdge AI - an AI-powered sports analytics platform for performance optimization</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 2025</span>
+                    <span class="achievement-badge">1st Place</span>
+                </div>
+            </div>
+            <div class="gallery-section" id="gallerySection" style="display:none;">
+    <h2 class="section-title">Sports Gallery</h2>
+<div class="horizontal-gallery">
+
+    <div class="gallery-card featured"><img src="/static/image/g1.jpeg"></div>
+    <div class="gallery-card featured"><img src="/static/image/g2.jpeg"></div>
+    <div class="gallery-card featured"><img src="/static/image/g4.jpeg"></div>
+     <div class="gallery-card featured"><img src="/static/image/g9.jpeg"></div>
+
+    <!-- Normal images -->
+    <div class="gallery-card"><img src="/static/image/g3.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g5.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g6.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g7.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g8.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g21.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g10.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g11.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g14.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g19.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g12.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g15.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g16.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g17.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g18.jpeg"></div>
+    <div class="gallery-card"><img src="/static/image/g19.jpeg"></div>
+
+</div>
+
+</div>
+
+
+            <!-- Hacknovation 1.0 -->
+            <div class="achievement-card" data-category="hackathon">
+                <div class="achievement-header">
+                    <div class="achievement-icon">🏥</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">HACKATHON</span>
+                        <h3 class="achievement-title">Hacknovation 1.0 Winner</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Awarded Best Healthcare AI Solution for developing SwasthaAI - an intelligent healthcare assistant</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 2024</span>
+                    <span class="achievement-badge">Best Solution</span>
+                </div>
+            </div>
+
+            <!-- MSME Hackathon -->
+            <div class="achievement-card" data-category="hackathon">
+                <div class="achievement-header">
+                    <div class="achievement-icon">🚀</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">HACKATHON</span>
+                        <h3 class="achievement-title">MSME Hackathon 5.0</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Selected participant for developing Cobot Threat Detection and Prevention Toolkit for cybersecurity</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 2025</span>
+                    <span class="achievement-badge">Selected</span>
+                </div>
+            </div>
+
+            <!-- SIH 2024 -->
+            <div class="achievement-card" data-category="hackathon">
+                <div class="achievement-header">
+                    <div class="achievement-icon">🥈</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">HACKATHON</span>
+                        <h3 class="achievement-title">SIH Hackathon 2024</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Secured Runner-Up position in Agriculture Domain at Smart India Hackathon with innovative agritech solution</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 2024</span>
+                    <span class="achievement-badge">Runner-Up</span>
+                </div>
+            </div>
+
+            <!-- Python Certification -->
+            <div class="achievement-card" data-category="certification">
+                <div class="achievement-header">
+                    <div class="achievement-icon">📜</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">CERTIFICATION</span>
+                        <h3 class="achievement-title">Python Certification</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Earned Python programming certification from HackerRank demonstrating proficiency in Python development</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 HackerRank</span>
+                    <span class="achievement-badge">Certified</span>
+                </div>
+            </div>
+
+            <!-- NPTEL - HCI -->
+            <div class="achievement-card" data-category="certification">
+                <div class="achievement-header">
+                    <div class="achievement-icon">📚</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">CERTIFICATION</span>
+                        <h3 class="achievement-title">Human Computer Interaction</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Completed NPTEL course from IIIT Delhi with 79% score and earned Silver Badge</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 NPTEL - IIIT Delhi</span>
+                    <span class="achievement-badge">Silver Badge</span>
+                </div>
+            </div>
+
+            <!-- AI/ML Certificate -->
+            <div class="achievement-card" data-category="certification">
+                <div class="achievement-header">
+                    <div class="achievement-icon">🤖</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">CERTIFICATION</span>
+                        <h3 class="achievement-title">Machine Learning Specialization</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Completed comprehensive Machine Learning specialization covering AI/ML fundamentals and advanced concepts</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 2024</span>
+                    <span class="achievement-badge">Certified</span>
+                </div>
+            </div>
+
+            <!-- Startup Fair -->
+            <div class="achievement-card" data-category="competition">
+                <div class="achievement-header">
+                    <div class="achievement-icon">🎓</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">COMPETITION</span>
+                        <h3 class="achievement-title">Startup Fair Winner</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Winner in Startup Fair organized by GIETU during their TechFest showcasing innovative solutions</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 GIETU TechFest</span>
+                    <span class="achievement-badge">Winner</span>
+                </div>
+            </div>
+
+            <!-- Tug of War -->
+            <div class="achievement-card" data-category="competition">
+                <div class="achievement-header">
+                    <div class="achievement-icon">💪</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">SPORTS</span>
+                        <h3 class="achievement-title">Tug of War Champion</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Led team as Captain to victory winning 7 consecutive matches demonstrating leadership and teamwork</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 College Sports</span>
+                    <span class="achievement-badge">Champion</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+   <script>
+const filterButtons = document.querySelectorAll('.filter-btn');
+const achievementCards = document.querySelectorAll('.achievement-card');
+const gallerySection = document.getElementById('gallerySection');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Hide everything first
+        achievementCards.forEach(card => card.style.display = 'none');
+        gallerySection.style.display = 'none';
+
+        if (filter === 'all') {
+            achievementCards.forEach(card => card.style.display = 'block');
+        } 
+        else if (filter === 'gallery') {
+            gallerySection.style.display = 'block';
+            gallerySection.scrollIntoView({ behavior: 'smooth' });
+        } 
+        else {
+            achievementCards.forEach(card => {
+                if (card.dataset.category === filter) {
+                    card.style.display = 'block';
+                }
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
