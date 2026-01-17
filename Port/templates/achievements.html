@@ -267,6 +267,8 @@
             align-items: center;
             padding-top: 15px;
             border-top: 1px solid rgba(59, 130, 246, 0.1);
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .achievement-badge {
@@ -276,6 +278,120 @@
             border-radius: 6px;
             font-size: 0.8em;
             font-weight: 600;
+        }
+
+        .view-btn {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #3b82f6;
+            color: #fff;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 120px;
+            width: 50%;
+            height: 50%;
+            background: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            background: rgba(59, 130, 246, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: #3b82f6;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            margin-top: 50px;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .gallery-section .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2em;
+        }
+
+        .horizontal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-card {
+            height: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 48px rgba(59, 130, 246, 0.4);
+            border-color: #3b82f6;
         }
 
         footer {
@@ -297,6 +413,16 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         /* Mobile Responsive */
@@ -366,6 +492,20 @@
             .achievement-title {
                 font-size: 1.15em;
             }
+
+            .horizontal-gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-card {
+                height: 260px;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -418,75 +558,16 @@
                 align-items: flex-start;
                 gap: 10px;
             }
+
+            .view-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .gallery-card {
+                height: 220px;
+            }
         }
-   
-/* Gallery grid */
-.horizontal-gallery {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* default 5 per row */
-    gap: 24px;
-}
-
-/* Top 3 featured images */
-.gallery-card.featured {
-    grid-column: span 1;   /* stays 3 in first row */
-    height: 460px;        /* increased height */
-    width: 320px;          /* full grid width */
-}
-
-/* Normal images (5 in a row) */
-.gallery-card {
-    height: 360px;        /* increased height */
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-/* Image fit */
-.gallery-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Hover effect */
-.gallery-card:hover {
-    transform: scale(1.06);
-    box-shadow: 0 22px 48px rgba(0,0,0,0.32);
-}
-
-/* Force first row to only 3 items */
-.horizontal-gallery .gallery-card.featured:nth-child(1),
-.horizontal-gallery .gallery-card.featured:nth-child(2),
-.horizontal-gallery .gallery-card.featured:nth-child(3) {
-    grid-column: span 1;
-}
-
-/* Responsive */
-@media (max-width: 1400px) {
-    .horizontal-gallery {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .horizontal-gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .horizontal-gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-card,
-    .gallery-card.featured {
-        height: 220px;
-    }
-}
-
     </style>
 </head>
 <body>
@@ -511,22 +592,22 @@
         <div class="stats-overview">
             <div class="stat-card">
                 <div class="stat-icon">🏆</div>
-                <div class="stat-number">5+</div>
+                <div class="stat-number">4+</div>
                 <div class="stat-label">Hackathon Wins</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">📜</div>
-                <div class="stat-number">5+</div>
+                <div class="stat-number">6+</div>
                 <div class="stat-label">Certifications</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">🎯</div>
-                <div class="stat-number">3+</div>
+                <div class="stat-number">2+</div>
                 <div class="stat-label">Competitions</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">⭐</div>
-                <div class="stat-number">9+</div>
+                <div class="stat-number">11+</div>
                 <div class="stat-label">Total Achievements</div>
             </div>
         </div>
@@ -537,12 +618,10 @@
             <button class="filter-btn" data-filter="certification">Certifications</button>
             <button class="filter-btn" data-filter="competition">Competitions</button>
             <button class="filter-btn" data-filter="gallery">Gallery</button>
-
         </div>
-        
 
-        <div class="achievements-grid">
-            <!-- Hackathon Winner - AthleteEdge AI -->
+        <div class="achievements-grid" id="achievementsGrid">
+            <!-- AI Hackathon Winner -->
             <div class="achievement-card" data-category="hackathon">
                 <div class="achievement-header">
                     <div class="achievement-icon">🏆</div>
@@ -555,39 +634,9 @@
                 <div class="achievement-meta">
                     <span class="achievement-date">📅 2025</span>
                     <span class="achievement-badge">1st Place</span>
+                    <button class="view-btn" onclick="openModal('/static/image/AI.jpg')">View</button>
                 </div>
             </div>
-            <div class="gallery-section" id="gallerySection" style="display:none;">
-    <h2 class="section-title">Sports Gallery</h2>
-<div class="horizontal-gallery">
-
-    <div class="gallery-card featured"><img src="/static/image/g1.jpeg"></div>
-    <div class="gallery-card featured"><img src="/static/image/g2.jpeg"></div>
-    <div class="gallery-card featured"><img src="/static/image/g4.jpeg"></div>
-     <div class="gallery-card featured"><img src="/static/image/g9.jpeg"></div>
-
-    <!-- Normal images -->
-    <div class="gallery-card"><img src="/static/image/g3.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g5.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g6.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g7.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g8.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g21.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g10.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g11.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g14.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g19.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g12.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g15.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g16.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g17.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g18.jpeg"></div>
-    <div class="gallery-card"><img src="/static/image/g19.jpeg"></div>
-
-</div>
-
-</div>
-
 
             <!-- Hacknovation 1.0 -->
             <div class="achievement-card" data-category="hackathon">
@@ -602,6 +651,7 @@
                 <div class="achievement-meta">
                     <span class="achievement-date">📅 2024</span>
                     <span class="achievement-badge">Best Solution</span>
+                    <button class="view-btn" onclick="openModal('/static/image/1.0.jpeg')">View</button>
                 </div>
             </div>
 
@@ -618,6 +668,7 @@
                 <div class="achievement-meta">
                     <span class="achievement-date">📅 2025</span>
                     <span class="achievement-badge">Selected</span>
+                    <button class="view-btn" onclick="openModal('/static/image/msme-hackathon.jpg')">View</button>
                 </div>
             </div>
 
@@ -634,6 +685,7 @@
                 <div class="achievement-meta">
                     <span class="achievement-date">📅 2024</span>
                     <span class="achievement-badge">Runner-Up</span>
+                    <button class="view-btn" onclick="openModal('/static/image/sih.jpg')">View</button>
                 </div>
             </div>
 
@@ -650,6 +702,7 @@
                 <div class="achievement-meta">
                     <span class="achievement-date">📅 HackerRank</span>
                     <span class="achievement-badge">Certified</span>
+                    <button class="view-btn" onclick="openModal('/static/image/py.png')">View</button>
                 </div>
             </div>
 
@@ -666,6 +719,24 @@
                 <div class="achievement-meta">
                     <span class="achievement-date">📅 NPTEL - IIIT Delhi</span>
                     <span class="achievement-badge">Silver Badge</span>
+                    <button class="view-btn" onclick="openModal('/static/image/Human.jpg')">View</button>
+                </div>
+            </div>
+
+            <!-- Cloud Computing -->
+            <div class="achievement-card" data-category="certification">
+                <div class="achievement-header">
+                    <div class="achievement-icon">☁️</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">CERTIFICATION</span>
+                        <h3 class="achievement-title">Cloud Computing</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Completed NPTEL course from IIT Kanpur and earned Elite Badge</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 NPTEL - IIT Kanpur</span>
+                    <span class="achievement-badge">Elite Badge</span>
+                    <button class="view-btn" onclick="openModal('/static/image/cc.jpg')">View</button>
                 </div>
             </div>
 
@@ -682,6 +753,24 @@
                 <div class="achievement-meta">
                     <span class="achievement-date">📅 2024</span>
                     <span class="achievement-badge">Certified</span>
+                    <button class="view-btn" onclick="openModal('/static/image/ml-cert.jpg')">View</button>
+                </div>
+            </div>
+
+            <!-- Generative AI -->
+            <div class="achievement-card" data-category="certification">
+                <div class="achievement-header">
+                    <div class="achievement-icon">✨</div>
+                    <div class="achievement-info">
+                        <span class="achievement-category">CERTIFICATION</span>
+                        <h3 class="achievement-title">Generative AI</h3>
+                    </div>
+                </div>
+                <p class="achievement-description">Completed Generative AI fundamentals and advanced concepts on LinkedIn</p>
+                <div class="achievement-meta">
+                    <span class="achievement-date">📅 2024</span>
+                    <span class="achievement-badge">Certified</span>
+                    <button class="view-btn" onclick="openModal('/static/image/gen.jpg')">View</button>
                 </div>
             </div>
 
@@ -698,6 +787,7 @@
                 <div class="achievement-meta">
                     <span class="achievement-date">📅 GIETU TechFest</span>
                     <span class="achievement-badge">Winner</span>
+                    <button class="view-btn" onclick="openModal('/static/image/startup.jpg')">View</button>
                 </div>
             </div>
 
@@ -714,45 +804,119 @@
                 <div class="achievement-meta">
                     <span class="achievement-date">📅 College Sports</span>
                     <span class="achievement-badge">Champion</span>
+                    <button class="view-btn" onclick="openModal('/static/image/war.jpg')">View</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Gallery Section (OUTSIDE the grid) -->
+        <div class="gallery-section" id="gallerySection" style="display:none;">
+            <h2 class="section-title">Sports Gallery</h2>
+            <div class="horizontal-gallery">
+                <div class="gallery-card"><img src="/static/image/g1.jpeg" alt="Sports 1"></div>
+                <div class="gallery-card"><img src="/static/image/g2.jpeg" alt="Sports 2"></div>
+                <div class="gallery-card"><img src="/static/image/g4.jpeg" alt="Sports 3"></div>
+                <div class="gallery-card"><img src="/static/image/g9.jpeg" alt="Sports 4"></div>
+                <div class="gallery-card"><img src="/static/image/g3.jpeg" alt="Sports 5"></div>
+                <div class="gallery-card"><img src="/static/image/g5.jpeg" alt="Sports 6"></div>
+                <div class="gallery-card"><img src="/static/image/g6.jpeg" alt="Sports 7"></div>
+                <div class="gallery-card"><img src="/static/image/g7.jpeg" alt="Sports 8"></div>
+                <div class="gallery-card"><img src="/static/image/g8.jpeg" alt="Sports 9"></div>
+                <div class="gallery-card"><img src="/static/image/g21.jpeg" alt="Sports 10"></div>
+                <div class="gallery-card"><img src="/static/image/g10.jpeg" alt="Sports 11"></div>
+                <div class="gallery-card"><img src="/static/image/g11.jpeg" alt="Sports 12"></div>
+                <div class="gallery-card"><img src="/static/image/g14.jpeg" alt="Sports 13"></div>
+                <div class="gallery-card"><img src="/static/image/g19.jpeg" alt="Sports 14"></div>
+                <div class="gallery-card"><img src="/static/image/g12.jpeg" alt="Sports 15"></div>
+                <div class="gallery-card"><img src="/static/image/g15.jpeg" alt="Sports 16"></div>
+                <div class="gallery-card"><img src="/static/image/g16.jpeg" alt="Sports 17"></div>
+                <div class="gallery-card"><img src="/static/image/g17.jpeg" alt="Sports 18"></div>
+                <div class="gallery-card"><img src="/static/image/g18.jpeg" alt="Sports 19"></div>
             </div>
         </div>
     </section>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="Achievement">
+        </div>
+    </div>
 
-   <script>
-const filterButtons = document.querySelectorAll('.filter-btn');
-const achievementCards = document.querySelectorAll('.achievement-card');
-const gallerySection = document.getElementById('gallerySection');
+    <footer>
+        &copy; 2026 Himanshu Singh | Professional Portfolio
+    </footer>
 
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const filter = button.dataset.filter;
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const achievementCards = document.querySelectorAll('.achievement-card');
+        const achievementsGrid = document.getElementById('achievementsGrid');
+        const gallerySection = document.getElementById('gallerySection');
 
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+        // Filter functionality
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
 
-        // Hide everything first
-        achievementCards.forEach(card => card.style.display = 'none');
-        gallerySection.style.display = 'none';
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
 
-        if (filter === 'all') {
-            achievementCards.forEach(card => card.style.display = 'block');
-        } 
-        else if (filter === 'gallery') {
-            gallerySection.style.display = 'block';
-            gallerySection.scrollIntoView({ behavior: 'smooth' });
-        } 
-        else {
-            achievementCards.forEach(card => {
-                if (card.dataset.category === filter) {
-                    card.style.display = 'block';
+                if (filter === 'all') {
+                    // Show all achievements, hide gallery
+                    achievementsGrid.style.display = 'grid';
+                    gallerySection.style.display = 'none';
+                    achievementCards.forEach(card => card.style.display = 'block');
+                } 
+                else if (filter === 'gallery') {
+                    // Hide achievements, show gallery
+                    achievementsGrid.style.display = 'none';
+                    gallerySection.style.display = 'block';
+                    setTimeout(() => {
+                        gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                } 
+                else {
+                    // Show filtered achievements, hide gallery
+                    achievementsGrid.style.display = 'grid';
+                    gallerySection.style.display = 'none';
+                    achievementCards.forEach(card => {
+                        if (card.dataset.category === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
                 }
             });
-        }
-    });
-});
-</script>
+        });
 
+        // Modal functionality
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.classList.add('active');
+            modalImg.src = imageSrc;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event.target.classList.contains('modal') || event.target.classList.contains('modal-close')) {
+                const modal = document.getElementById('imageModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('imageModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>
