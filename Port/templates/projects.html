@@ -509,6 +509,19 @@
                 font-size: 0.85em;
             }
         }
+        .project-preview {
+    margin: 15px 0;
+}
+
+.project-preview img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
     </style>
 </head>
 <body>
@@ -556,12 +569,16 @@
         <div class="projects-grid">
             <!-- SwasthaAI Project -->
             <div class="project-card" data-category="ai">
+                
                 <div class="project-image">🏥</div>
                 <div class="project-content">
                     <span class="project-category">AI/ML</span>
                     <h3 class="project-title">SwasthaAI-Agent</h3>
                     <p class="project-description">An AI-driven healthcare assistant that performs symptom checking, provides medical suggestions, and verifies medicines using OCR technology.</p>
-                    
+                     <div class="project-preview">
+            <img src="/static/image/swasthaai.png" 
+                 alt="Placement Dashboard Preview">
+        </div>
                     <div class="highlights">
                         <h4>Key Features:</h4>
                         <ul>
@@ -594,7 +611,10 @@
                     <span class="project-category">Development</span>
                     <h3 class="project-title">Student Exam Repository</h3>
                     <p class="project-description">A centralized platform where university students can access previous years' semester question papers and study materials with organized course-wise access and clean navigation.</p>
-                    
+                     <div class="project-preview">
+            <img src="/static/image/giet.png" 
+                 alt="Placement Dashboard Preview">
+        </div>
                     <div class="highlights">
                         <h4>Key Features:</h4>
                         <ul>
@@ -692,7 +712,10 @@
                     <span class="project-category">AI / Agritech</span>
                     <h3 class="project-title">Smart Agritech</h3>
                     <p class="project-description">AI-powered system that monitors food quality and crop health using real-time data, helping farmers make informed decisions and reduce wastage.</p>
-                    
+                      <div class="project-preview">
+            <img src="/static/image/sih.png" 
+                 alt="Placement Dashboard Preview">
+        </div>
                     <div class="highlights">
                         <h4>Key Features:</h4>
                         <ul>
@@ -716,10 +739,79 @@
                     </div>
                 </div>
             </div>
+<div class="project-card" data-category="analytics" data-image="/static/image/placement.png">
+    <div class="project-image">📊</div>
+
+    <div class="project-content">
+        <span class="project-category">Data Analytics / Placement</span>
+
+        <h3 class="project-title">Student Placement Record Analysis</h3>
+
+        <p class="project-description">
+            Data-driven placement analytics system that visualizes student placement
+            performance, average CTC trends, department-wise placement rates,
+            and company-wise offer distribution.
+        </p>
+
+        <!-- SMALL DASHBOARD IMAGE -->
+        <div class="project-preview">
+            <img src="/static/image/placement.png" 
+                 alt="Placement Dashboard Preview">
+        </div>
+        
+        <div class="highlights">
+            <h4>Key Features:</h4>
+            <ul>
+                <li>Overall placement rate & status tracking</li>
+                <li>Department-wise placement performance</li>
+                <li>Company-wise total offers analysis</li>
+                <li>Average CTC trend analysis (year-wise)</li>
+            </ul>
+        </div>
+
+        <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">Analytics Dashboard</span>
+        </div>
+
+        <div class="project-links">
+            <a href="javascript:void(0)" class="project-btn btn-demo view-dashboard">
+                View Dashboard
+            </a>
+            <a href="#" class="project-btn btn-code">View Report</a>
+        </div>
+    </div>
+</div>
+
+
         </div>
     </section>
 
-  
+  <script>
+document.querySelectorAll('.view-dashboard').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const card = btn.closest('.project-card');
+        const img = card.getAttribute('data-image');
+
+        if (img) {
+            document.getElementById('dashboardModalImage').src = img;
+            document.getElementById('dashboardModal').style.display = 'flex';
+        }
+    });
+});
+
+// close modal
+document.getElementById('dashboardModal').addEventListener('click', (e) => {
+    if (e.target.id === 'dashboardModal' || e.target.classList.contains('close-btn')) {
+        e.currentTarget.style.display = 'none';
+    }
+});
+</script>
+
 
     <script>
         const filterButtons = document.querySelectorAll('.filter-btn');
